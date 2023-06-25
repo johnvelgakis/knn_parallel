@@ -11,7 +11,7 @@ CFLAGS  = -DPROBDIM=$(DIM) -DNNBS=$(KNN) -DTRAINELEMS=$(TRA) -DQUERYELEMS=$(QUE)
 CFLAGS += -DSURROGATES -Wall
 LDFLAGS += -lm
 
-all: gendata myknn
+all: gendata myknn idw
 
 gendata: gendata.o
 	gcc -o gendata gendata.o $(LDFLAGS)
