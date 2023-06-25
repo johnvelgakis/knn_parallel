@@ -25,5 +25,11 @@ myknn: myknn.o
 myknn.o: myknn.c func.c
 	gcc $(CFLAGS) -c myknn.c
 
+idw: idw.o
+	gcc -o idw idw.o $(LDFLAGS)
+
+idw.o: idw.c func.c
+	gcc $(CFLAGS) -c idw.c
+
 clean:
 	rm -f myknn *.o gendata
