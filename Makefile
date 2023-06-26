@@ -8,7 +8,7 @@ HIGH ?= 2
 
 CFLAGS  = -DPROBDIM=$(DIM) -DNNBS=$(KNN) -DTRAINELEMS=$(TRA) -DQUERYELEMS=$(QUE) -DLB=$(LOW) -DUB=$(HIGH) -g -ggdb -O3
 CFLAGS += -DSURROGATES -Wall
-CFLAGS += -Xpreprocessor -fopenmp
+CFLAGS += -Xclang -fopenmp
 
 LDFLAGS += -lm -fopenmp
 
