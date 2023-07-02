@@ -42,8 +42,7 @@ idw_open: idw_open.o func.o
 idw_open.o: idw_open.c func.c
 	clang -Xpreprocessor -fopenmp $(CPPFLAGS) -c idw_open.c $(CFLAGS)
 
-func.o: func.c func.h
-	clang $(CFLAGS) -c func.c
+
 
 clean:
 	rm -f gendata myknn idw myknn_open idw_open *.o
