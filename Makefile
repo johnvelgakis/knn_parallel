@@ -18,18 +18,22 @@ gendata: gendata.c
 
 myknn: myknn.c func.c
 	clang $(CFLAGS) -c myknn.c
+	clang -c func.c
 	clang -o myknn myknn.o func.o $(LDFLAGS)
 
 idw: idw.c func.c
 	clang $(CFLAGS) -c idw.c
+	clang -c func.c
 	clang -o idw idw.o func.o $(LDFLAGS)
 
 myknn_open: myknn_open.c func.c
 	clang -Xpreprocessor -fopenmp $(CPPFLAGS) -c myknn_open.c $(CFLAGS)
+	clang -c func.c
 	clang -Xpreprocessor -fopenmp -lomp myknn_open.o func.o -o myknn_open $(LDFLAGS)
 
 idw_open: idw_open.c func.c
 	clang -Xpreprocessor -fopenmp $(CPPFLAGS) -c idw_open.c $(CFLAGS)
+	clang -c func.c
 	clang -Xpreprocessor -fopenmp -lomp idw_open.o func.o -o idw_open $(LDFLAGS)
 
 clean:
