@@ -8,7 +8,7 @@ HIGH ?= 2
 
 CC = clang
 CFLAGS = -DPROBDIM=$(DIM) -DNNBS=$(KNN) -DTRAINELEMS=$(TRA) -DQUERYELEMS=$(QUE) -DLB=$(LOW) -DUB=$(HIGH) -g -ggdb -O3 -DSURROGATES -Wall
-LDFLAGS = -lm -lomp
+LDFLAGS = -lm -Xlinker -undefined -Xlinker dynamic_lookup
 OPENMP_INCLUDE = -I/usr/local/opt/libomp/include
 OPENMP_LIB = -L/usr/local/opt/libomp/lib
 OPENMP_FLAGS = -Xpreprocessor -fopenmp -lomp
