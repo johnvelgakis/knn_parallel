@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <omp.h>
-
+#define MAX_NNB 32
 #ifndef PROBDIM
 #define PROBDIM 2
 #endif
