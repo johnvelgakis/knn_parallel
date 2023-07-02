@@ -12,37 +12,25 @@ CPPFLAGS = -I/usr/local/opt/libomp/include
 
 all: gendata myknn idw myknn_open idw_open
 
-gendata: gendata.o func.o
-	clang -o gendata gendata.o func.o $(LDFLAGS)
-
-gendata.o: gendata.c func.c
+gendata: gendata.c
 	clang $(CFLAGS) -c gendata.c
+	clang -o gendata gendata.o $(LDFLAGS)
 
-myknn: myknn.o func.o
+myknn: myknn.c func.c
+	clang $(CFLAGS) -c myknn.c
 	clang -o myknn myknn.o func.o $(LDFLAGS)
 
-myknn.o: myknn.c func.c
-	clang $(CFLAGS) -c myknn.c
-
-idw: idw.o func.o
+idw: idw.c func.c
+	clang $(CFLAGS) -c idw.c
 	clang -o idw idw.o func.o $(LDFLAGS)
 
-idw.o: idw.c func.c
-	clang $(CFLAGS) -c idw.c
-
-myknn_open: myknn_open.o func.o
+myknn_open: myknn_open.c func.c
+	clang -Xpreprocessor -fopenmp $(CPPFLAGS) -c myknn_open.c $(CFLAGS)
 	clang -Xpreprocessor -fopenmp -lomp myknn_open.o func.o -o myknn_open $(LDFLAGS)
 
-myknn_open.o: myknn_open.c func.c
-	clang -Xpreprocessor -fopenmp $(CPPFLAGS) -c myknn_open.c $(CFLAGS)
-
-idw_open: idw_open.o func.o
-	clang -Xpreprocessor -fopenmp -lomp idw_open.o func.o -o idw_open $(LDFLAGS)
-
-idw_open.o: idw_open.c func.c
+idw_open: idw_open.c func.c
 	clang -Xpreprocessor -fopenmp $(CPPFLAGS) -c idw_open.c $(CFLAGS)
-
-
+	clang -Xpreprocessor -fopenmp -lomp idw_open.o func.o -o idw_open $(LDFLAGS)
 
 clean:
 	rm -f gendata myknn idw myknn_open idw_open *.o
