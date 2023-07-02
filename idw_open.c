@@ -9,6 +9,8 @@
 #endif
 
 #include "func.c"
+static double **xdata;
+static double ydata[TRAINELEMS];
 
 double inverse_distance_weighted_average(double *p, int n, int knn)
 {
